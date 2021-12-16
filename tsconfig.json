@@ -7,6 +7,7 @@
       "esnext"
     ],
     "allowJs": true,
+    "baseUrl": "src",
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -21,6 +22,9 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src"
+    "src",
+    "./**/*.ts",
+    "./**/*.tsx",
+    "./.eslintrc.js"
   ]
 }

@@ -1,0 +1,54 @@
+{
+	"extends": "stylelint-config-recommended-scss",
+	"plugins": [
+		"stylelint-order"
+	],
+	"rules": {
+		"order/order": [
+			"custom-properties",
+			"declarations",
+			"rules"
+		],
+		"selector-class-pattern": "^[a-z][a-zA-Z0-9]+$",
+		"order/properties-alphabetical-order": true,
+		"color-named": [
+			"never",
+			{
+				"ignore": [
+					"inside-function"
+				]
+			}
+		],
+		"function-url-quotes": "always",
+		"at-rule-empty-line-before": [
+			"always",
+			{
+				"ignore": [
+					"after-comment",
+					"first-nested"
+				],
+				"except": [
+					"blockless-after-same-name-blockless"
+				],
+				"ignoreAtRules": [
+					"else"
+				]
+			}
+		],
+		"rule-empty-line-before": [
+			"always",
+			{
+				"ignore": [
+					"after-comment",
+					"first-nested"
+				]
+			}
+		],
+		"selector-pseudo-class-no-unknown": [
+			true,
+			{
+				"ignorePseudoClasses": ["export"]
+			}
+		]
+	}
+}
