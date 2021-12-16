@@ -1,0 +1,12 @@
+@use "sass:math";
+@use "sass:string";
+
+$rem-base: 16 !default;
+
+@function rem-calc( $size ) {
+	@return math.div($size, $rem-base) * 1rem;
+}
+
+@function is-unitless($value) {
+	@return 0 == string.length(unit($value));
+}

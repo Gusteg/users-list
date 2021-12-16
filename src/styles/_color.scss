@@ -1,0 +1,32 @@
+@use "sass:map";
+@use "sass:string";
+@use "sass:list";
+@use "config/variables" as *;
+
+$colors: () !default;
+
+@function get( $colorName, $index: 1 ) {
+	@if map.has-key( $colors, $colorName ) {
+		$color: map.get($colors, $colorName);
+
+		$return: "";
+
+		@if $index == "light" {
+			$index: 2;
+		} @else if $index == "dark" {
+			$index: 3;
+		}
+
+		@if type-of( $color ) == "list" {
+			$return: list.nth(#{$color}, $index);
+		} @else {
+			$return: #{$color};
+		}
+
+		@return $return;
+	} @else {
+		@warn "Invalid color: #{$colorName}.";
+	}
+
+	@return null;
+}
