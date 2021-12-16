@@ -1,0 +1,12 @@
+@use "styles/color";
+@use "styles/unit" as *;
+
+.usersList {
+	list-style: none;
+	margin-left: rem-calc(123);
+	padding-left: 0;
+
+	span {
+		color: color.get(grey);
+	}
+}

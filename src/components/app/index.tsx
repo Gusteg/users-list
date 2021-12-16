@@ -2,6 +2,7 @@ import styles from './styles.module.scss';
 import { FC, useState, useEffect } from 'react';
 import { User } from 'types';
 import { getUsers } from 'queries';
+import { UsersList } from 'components';
 
 const App: FC = () => {
 	const [users, setUsers] = useState<User[]>([]);
@@ -28,11 +29,7 @@ const App: FC = () => {
 	return (
 		<div className={styles.app}>
 			<h1 className={styles.heading}>Users List</h1>
-			<ul>
-				{users.map((user: User) => (
-					<p key={user.id}>{user.name}</p>
-				))}
-			</ul>
+			<UsersList users={users} />
 			{error && <p>{error}</p>}
 		</div>
 	);
