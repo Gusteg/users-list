@@ -1,11 +1,41 @@
 import styles from './styles.module.scss';
-import { FC } from 'react';
+import { FC, useState, useEffect } from 'react';
+import { User } from 'types';
+import { getUsers } from 'queries';
 
-const App: FC = () => (
-	<div className={styles.app}>
-		<p>users list</p>
-		<p>{process.env.REACT_APP_API}</p>
-	</div>
-);
+const App: FC = () => {
+	const [users, setUsers] = useState<User[]>([]);
+	const [error, setError] = useState<string>('');
+
+	useEffect(() => {
+		const fetchUsers = async () => {
+			try {
+				const response: User[] = await getUsers();
+
+				if (!response) {
+					return;
+				}
+
+				setUsers(response);
+			} catch (e) {
+				setError((e as Error).message);
+			}
+		};
+
+		fetchUsers();
+	}, []);
+
+	return (
+		<div className={styles.app}>
+			<h1 className={styles.heading}>Users List</h1>
+			<ul>
+				{users.map((user: User) => (
+					<p key={user.id}>{user.name}</p>
+				))}
+			</ul>
+			{error && <p>{error}</p>}
+		</div>
+	);
+};
 
 export default App;
