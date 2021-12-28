@@ -52,7 +52,7 @@ const App: FC = () => {
 			{filtredUsers.length ? (
 				<UsersList users={filtredUsers} />
 			) : (
-				<p>No users found.</p>
+				<p data-testid="search-no-users">No users found.</p>
 			)}
 			{displayError && (
 				<Alert

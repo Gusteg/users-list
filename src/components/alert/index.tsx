@@ -7,7 +7,7 @@ type AlertProps = {
 };
 
 const Alert: FC<AlertProps> = ({ message, onAlertClose }) => (
-	<div className={style.alert}>
+	<div className={style.alert} data-testid="alert-container">
 		<button onClick={onAlertClose} className={style.alertCloseBtn}>
 			Close
 		</button>

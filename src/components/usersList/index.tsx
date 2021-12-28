@@ -7,7 +7,7 @@ type UsersListProps = {
 };
 
 const UsersList: FC<UsersListProps> = ({ users }) => (
-	<ul className={styles.usersList}>
+	<ul className={styles.usersList} data-testid="list-container">
 		{users.map((user: User, index: number) => (
 			<li key={user.id}>
 				<span>{index + 1}. </span>
