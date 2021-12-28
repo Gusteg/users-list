@@ -1,0 +1,8 @@
+@use "styles/color";
+@use "styles/unit" as *;
+
+.input {
+	border: rem-calc(2) solid color.get(grey900);
+	margin: 0 auto rem-calc(20);
+	padding: rem-calc(2) rem-calc(6);
+}

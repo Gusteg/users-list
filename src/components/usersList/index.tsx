@@ -12,7 +12,7 @@ const UsersList: FC<UsersListProps> = ({ users }) => (
 			<li key={user.id}>
 				<span>{index + 1}. </span>
 				{user.name}
-				<span>@{user.username}</span>
+				<span> @{user.username}</span>
 			</li>
 		))}
 	</ul>

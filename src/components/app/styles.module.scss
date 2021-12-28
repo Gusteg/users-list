@@ -1,8 +1,7 @@
 @use "styles/unit" as *;
-@use "../../styles/color";
 
 .app {
-    align-items: flex-start;
+	align-items: flex-start;
 	display: flex;
 	flex-direction: column;
 	margin: 0 auto;
