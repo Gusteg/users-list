@@ -1,0 +1,22 @@
+@use "styles/color";
+@use "styles/unit" as *;
+
+.alert {
+	background-color: color.get(white);
+	border: rem-calc(1) solid color.get(black);
+	bottom: 10%;
+	box-shadow: 0 0 rem-calc(16) 0 color.get(grey500);
+	left: 10%;
+	padding: rem-calc(24);
+	position: fixed;
+	right: 10%;
+	top: 10%;
+}
+
+.alertCloseBtn {
+	border-radius: 0;
+	cursor: pointer;
+	position: absolute;
+	right: 0;
+	top: 0;
+}

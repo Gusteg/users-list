@@ -2,13 +2,14 @@ import styles from './styles.module.scss';
 import { FC, useState, useEffect, ChangeEvent } from 'react';
 import { User } from 'types';
 import { getUsers } from 'queries';
-import { UsersList, Input } from 'components';
+import { UsersList, Input, Alert } from 'components';
 
 const App: FC = () => {
 	const [users, setUsers] = useState<User[]>([]);
 	const [error, setError] = useState<string>('');
 	const [searchPhrase, setSearchPhrase] = useState<string>('');
 	const [filtredUsers, setFiltredUsers] = useState<User[]>([]);
+	const [displayError, setDisplayError] = useState<boolean>(false);
 
 	useEffect(() => {
 		const fetchUsers = async () => {
@@ -22,6 +23,7 @@ const App: FC = () => {
 				setUsers(response);
 			} catch (e) {
 				setError((e as Error).message);
+				setDisplayError(true);
 			}
 		};
 
@@ -47,8 +49,17 @@ const App: FC = () => {
 					setSearchPhrase(e.target.value.toLowerCase())
 				}
 			/>
-			<UsersList users={filtredUsers} />
-			{error && <p>{error}</p>}
+			{filtredUsers.length ? (
+				<UsersList users={filtredUsers} />
+			) : (
+				<p>No users found.</p>
+			)}
+			{displayError && (
+				<Alert
+					message={error}
+					onAlertClose={() => setDisplayError(false)}
+				/>
+			)}
 		</div>
 	);
 };
