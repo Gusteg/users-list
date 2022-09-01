@@ -1,36 +1,33 @@
 import styles from './styles.module.scss';
 import { FC, useState, useEffect, ChangeEvent } from 'react';
 import { User } from 'types';
-import { getUsers } from 'queries';
 import { UsersList, Input, Alert } from 'components';
+import { useGetUsers } from 'hooks/useGetUsers';
 
 const App: FC = () => {
 	const [users, setUsers] = useState<User[]>([]);
-	const [error, setError] = useState<string>('');
+	const [error, setError] = useState<string>();
 	const [searchPhrase, setSearchPhrase] = useState<string>('');
 	const [filtredUsers, setFiltredUsers] = useState<User[]>([]);
 	const [displayError, setDisplayError] = useState<boolean>(false);
+	const { data: usersData, error: usersError } = useGetUsers();
 
 	useEffect(() => {
-		const fetchUsers = async () => {
-			try {
-				const response: User[] = await getUsers();
+		if (usersError) {
+			setError(usersError);
+			setDisplayError(true);
+		}
 
-				if (!response) {
-					return;
-				}
-
-				setUsers(response);
-			} catch (e) {
-				setError((e as Error).message);
-				setDisplayError(true);
-			}
-		};
-
-		fetchUsers();
-	}, []);
+		if (usersData) {
+			setUsers(usersData);
+		}
+	}, [usersData, usersError]);
 
 	useEffect(() => {
+		if (!users) {
+			return;
+		}
+
 		setFiltredUsers(
 			users.filter((user: User) =>
 				user.name.toLowerCase().includes(searchPhrase)
@@ -54,7 +51,7 @@ const App: FC = () => {
 			) : (
 				<p data-testid="search-no-users">No users found.</p>
 			)}
-			{displayError && (
+			{displayError && error && (
 				<Alert
 					message={error}
 					onAlertClose={() => setDisplayError(false)}
