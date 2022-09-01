@@ -40,7 +40,7 @@ Runs app e2e test.
 
 ### `engines`
 
-node: 16.13.1
+node: >=16.13.1
 yarn: 1.22.15
 npm: 8.1.2
 
